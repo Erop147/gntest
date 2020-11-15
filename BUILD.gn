@@ -2,13 +2,15 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+d = exec_script("//get_deps.py")
+
 executable("hello") {
   sources = [ "hello.cc" ]
 
   deps = [
     ":hello_shared",
     ":hello_static",
-    exec_script("//get_deps.py"),
+    d,
   ]
 }
 
@@ -16,6 +18,7 @@ shared_library("hello_shared") {
   sources = [
     "hello_shared.cc",
     "hello_shared.h",
+    d,
   ]
 
   defines = [ "HELLO_SHARED_IMPLEMENTATION" ]
@@ -25,5 +28,6 @@ static_library("hello_static") {
   sources = [
     "hello_static.cc",
     "hello_static.h",
+    d,
   ]
 }
